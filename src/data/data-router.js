@@ -1,5 +1,5 @@
 const express = require('express');
-const path = require('path');
+
 const dataAPI = [
   {
   "postId": 1,
@@ -347,11 +347,11 @@ const dataAPI = [
 ]
 
 const dataRouter = express.Router();
-const bodyPaser = express.json();
 
 dataRouter
-  .get ('/', (req, res, next ) => {
-    res.send(dataAPI)
+  .route('/')
+  .get ((req, res, next ) => {
+    res.json(dataAPI)
   })
 
 module.exports = dataRouter;

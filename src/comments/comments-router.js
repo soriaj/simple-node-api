@@ -1,5 +1,5 @@
 const express = require('express');
-const path = require('path');
+
 const commentsAPI = [
   {
       "postId": 1,
@@ -3504,11 +3504,11 @@ const commentsAPI = [
 ]
 
 const commentsRouter = express.Router();
-const bodyPaser = express.json();
 
 commentsRouter
-  .get ('/', (req, res, next ) => {
-    res.send(commentsAPI)
+  .route('/')
+  .get((req, res, next ) => {
+    res.json(commentsAPI)
   })
 
 module.exports = commentsRouter;
