@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    app: mock-api
+  name: mock-api-ingress
+  namespace: default
+spec:
+  rules:
+  - host: <your fqdn>
+    http:
+      paths:
+      - backend:
+          serviceName: mock-api
+          servicePort: 8080
+        path: /
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - <your fdqn>
