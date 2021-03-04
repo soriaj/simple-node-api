@@ -60,6 +60,9 @@ kubectl apply -f mock-node-api-svc.yaml
 kubectl apply -f mock-node-api-ingress.yaml
 ```
 
+## Architecture Diagram
+![architecture](./img/architecture.png)
+
 ## Contributor(s)
 
 Javier Soria
