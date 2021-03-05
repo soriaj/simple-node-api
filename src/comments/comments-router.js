@@ -1,5 +1,3 @@
-const express = require('express');
-
 const commentsAPI = [
   {
       "postId": 1,
@@ -3503,12 +3501,28 @@ const commentsAPI = [
   }
 ]
 
+require('dotenv').config()
+const express = require('express');
 const commentsRouter = express.Router();
 
 commentsRouter
   .route('/')
   .get((req, res, next ) => {
-    res.json(commentsAPI)
+    const authToken = req.get('Authorization') || ''
+  
+    let bearerToken;
+    // Check to see if authorization header exists with bearer, if not return an error
+    if(!authToken.toLowerCase().startsWith('bearer ')){
+      return res.status(401).json({ error: 'Unauthorized request' })
+    } else {
+      bearerToken = authToken.slice('bearer '.length, authToken.length)
+      if(bearerToken !== process.env.JWT_TOKEN) {
+        return res.status(401).json({ message: 'You are not authorized to access this data' })
+      } else {
+        res.status(200).json(commentsAPI)
+      }
+    }
+    next()
   })
 
 module.exports = commentsRouter;

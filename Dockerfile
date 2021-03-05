@@ -12,4 +12,8 @@ RUN npm install && npm cache clean --force
 
 COPY . .
 
+ARG JWT_TOKEN_BUILD
+
+ENV JWT_TOKEN=$JWT_TOKEN_BUILD
+
 CMD [ "node", "src/server.js" ]
